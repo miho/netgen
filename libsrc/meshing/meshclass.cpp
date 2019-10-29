@@ -1,7 +1,10 @@
 #include <mystdlib.h>
 #include <atomic>
 #include "meshing.hpp"
+
+#ifdef USE_PYTHON
 #include <core/python_ngcore.hpp>
+#endif
 
 namespace netgen
 {

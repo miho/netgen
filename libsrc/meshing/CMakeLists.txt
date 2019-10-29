@@ -1,4 +1,5 @@
 add_definitions(-DNGINTERFACE_EXPORTS)
+
 add_library(mesh ${NG_LIB_TYPE}
         adfront2.cpp adfront3.cpp bisect.cpp boundarylayer.cpp 
         clusters.cpp curvedelems.cpp delaunay.cpp delaunay2d.cpp	    
@@ -12,10 +13,15 @@ add_library(mesh ${NG_LIB_TYPE}
         smoothing2.cpp smoothing3.cpp specials.cpp tetrarls.cpp		    
         topology.cpp triarls.cpp validate.cpp bcfunctions.cpp   
         parallelmesh.cpp  paralleltop.cpp  paralleltop.hpp basegeom.cpp     
-        python_mesh.cpp hexarls.cpp
+        hexarls.cpp
+        #python_mesh.cpp 
         ../../ng/onetcl.cpp
         ${mesh_object_libs}
         )
+
+if(USE_PYTHON)
+        target_sources(mesh PUBLIC python_mesh.cpp)
+endif()        
 
 if(APPLE)
     set_target_properties( mesh PROPERTIES SUFFIX ".so")
